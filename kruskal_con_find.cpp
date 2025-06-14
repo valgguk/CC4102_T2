@@ -1,7 +1,8 @@
-// kruskal_con_opti.cpp
+// krsukal_con_find.cpp
 // Implementaciones de Kruskal con optimización de find usando arreglo ordenado y heap clásico
 
 #include "estructuras.h"
+#include "kruskal_con_find.h"
 #include <algorithm>
 #include <queue>
 #include <chrono>
