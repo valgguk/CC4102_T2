@@ -1,47 +1,14 @@
-// krsukal_con_find.cpp
+// kruskal_con_find.cpp
 // Implementaciones de Kruskal con optimización de find usando arreglo ordenado y heap clásico
 
 #include "estructuras.h"
 #include "kruskal_con_find.h"
+#include "union_find.h"
 #include <algorithm>
 #include <queue>
 #include <chrono>
 #include <vector>
 #include <iostream>
-#include <string>
-
-/**
- * Union-Find (Disjoint Set Union) con compresión de rutas y unión por tamaño.
- */
-class UnionFind {
-private:
-    std::vector<int> parent;
-    std::vector<int> size;
-public:
-    // Inicializa n conjuntos disjuntos [0 .. n-1]
-    UnionFind(int n) : parent(n), size(n, 1) {
-        for (int i = 0; i < n; ++i) parent[i] = i;
-    }
-
-    // Encuentra el representante con compresión de rutas
-    int find(int u) {
-        if (parent[u] != u)
-            parent[u] = find(parent[u]);
-        return parent[u];
-    }
-
-    // Une dos conjuntos por tamaño; devuelve true si se unieron, false si ya estaban conectados
-    bool unite(int u, int v) {
-        u = find(u);
-        v = find(v);
-        if (u == v) return false;
-        if (size[u] < size[v])
-            std::swap(u, v);
-        parent[v] = u;
-        size[u] += size[v];
-        return true;
-    }
-};
 
 /**
  * Kruskal con arreglo ordenado de aristas y optimización de find (compresión de rutas).
@@ -65,7 +32,7 @@ std::vector<Edge> kruskal_sort_opti(std::vector<Edge> edges, int num_nodes) {
         if (uf.find(u) != uf.find(v)) {
             uf.unite(u, v);
             mst.push_back(e);
-            if (mst.size() == (size_t)num_nodes - 1)
+            if (mst.size() == static_cast<size_t>(num_nodes - 1))
                 break;
         }
     }
@@ -86,7 +53,7 @@ std::vector<Edge> kruskal_heap_opti(const std::vector<Edge>& edges, int num_node
     std::vector<Edge> mst;
     mst.reserve(num_nodes - 1);
 
-    while (!pq.empty() && mst.size() < (size_t)num_nodes - 1) {
+    while (!pq.empty() && mst.size() < static_cast<size_t>(num_nodes - 1)) {
         Edge e = pq.top();
         pq.pop();
         int u = e.u->id;
@@ -107,7 +74,6 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         n = std::stoi(argv[1]);
     }
-    // Generar nodos y aristas
     auto nodes = generate_nodes(n);
     auto edges = generate_edges(nodes);
 

@@ -1,5 +1,6 @@
-#ifndef KRSUKAL_CON_FIND_H
-#define KRSUKAL_CON_FIND_H
+// kruskal_con_find.h
+#ifndef KRUSKAL_CON_FIND_H
+#define KRUSKAL_CON_FIND_H
 
 #include "estructuras.h"
 #include <vector>
@@ -20,4 +21,4 @@ std::vector<Edge> kruskal_sort_opti(std::vector<Edge> edges, int num_nodes);
  */
 std::vector<Edge> kruskal_heap_opti(const std::vector<Edge>& edges, int num_nodes);
 
-#endif // KRSUKAL_CON_FIND_H
+#endif // KRUSKAL_CON_FIND_H
