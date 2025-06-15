@@ -9,6 +9,7 @@
 #include <chrono>
 #include <vector>
 #include <iostream>
+#include <string>
 
 /**
  * Kruskal con arreglo ordenado de aristas y optimización de find (compresión de rutas).
