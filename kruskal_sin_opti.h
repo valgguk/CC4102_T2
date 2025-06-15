@@ -3,35 +3,30 @@
 
 #include <vector>
 
-// Union-Find SIN optimización de find
-struct UnionFind {
-    std::vector<int> parent, rank;
+/**
+ * @file kruskal_sin_opti.h
+ * @brief Declaraciones para el algoritmo de Kruskal sin optimización de compresión de caminos.
+ *
+ * Este archivo contiene las declaraciones de las funciones que implementan el algoritmo de Kruskal
+ * utilizando una estructura Union-Find sin compresión de caminos.
+ */
 
-    UnionFind(int n) : parent(n), rank(n, 0) {
-        for (int i = 0; i < n; ++i)
-            parent[i] = i;
-    }
+/**
+ * @brief Algoritmo de Kruskal usando ordenamiento para encontrar el árbol de expansión mínima.
+ * 
+ * @param edges Vector de aristas del grafo.
+ * @param n Número de nodos en el grafo.
+ * @return Vector de aristas que forman el árbol de expansión mínima.
+ */
+std::vector<Edge> kruskal_sort(std::vector<Edge>& edges, int n);
 
-    //Versión SIN optimización de find (compresión de caminos)
-    int find(int x) {
-        while (parent[x] != x)
-            x = parent[x];
-        return x;
-    }
-
-    bool unite(int x, int y) {
-        int rx = find(x), ry = find(y);
-        if (rx == ry) return false;
-        if (rank[rx] < rank[ry])
-            parent[rx] = ry;
-        else if (rank[rx] > rank[ry])
-            parent[ry] = rx;
-        else {
-            parent[ry] = rx;
-            rank[rx]++;
-        }
-        return true;
-    }
-};
+/**
+ * @brief Algoritmo de Kruskal usando un heap (priority_queue) para seleccionar la arista de menor peso.
+ * 
+ * @param edges Vector de aristas del grafo.
+ * @param n Número de nodos en el grafo.
+ * @return Vector de aristas que forman el árbol de expansión mínima.
+ */
+std::vector<Edge> kruskal_heap(const std::vector<Edge>& edges, int n);
 
 #endif
