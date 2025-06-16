@@ -67,35 +67,3 @@ std::vector<Edge> kruskal_heap_opti(const std::vector<Edge>& edges, int num_node
     return mst;
 }
 
-/**
- * Ejemplo de uso en main: genera nodos, aristas y mide tiempos de ambas implementaciones.
- */
-int main(int argc, char* argv[]) {
-    int n = 1000;  // por defecto, número de nodos
-    if (argc > 1) {
-        n = std::stoi(argv[1]);
-    }
-    auto nodes = generate_nodes(n);
-    auto edges = generate_edges(nodes);
-
-    // Medir implementación con sort
-    {
-        auto edges_copy = edges;
-        auto start = std::chrono::high_resolution_clock::now();
-        auto mst = kruskal_sort_opti(edges_copy, n);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed = end - start;
-        std::cout << "Kruskal (sort + compresión de rutas): " << elapsed.count() << " s\n";
-    }
-
-    // Medir implementación con heap
-    {
-        auto start = std::chrono::high_resolution_clock::now();
-        auto mst = kruskal_heap_opti(edges, n);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed = end - start;
-        std::cout << "Kruskal (heap + compresión de rutas): " << elapsed.count() << " s\n";
-    }
-
-    return 0;
-}
