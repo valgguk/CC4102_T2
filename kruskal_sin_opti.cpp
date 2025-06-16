@@ -149,7 +149,7 @@ int main(int argc, char* argv[]) {
         auto end = std::chrono::high_resolution_clock::now(); // Finalizar el cronómetro
         // Calcular la duración
         std::chrono::duration<double> duration = end - start;
-        std::cout << "Kruskal (sort): " << duration.count() << " segundos" << "s\n";
+        std::cout << "Kruskal (sort): " << duration.count() << " segundos" << "\n";
     }
 
     {
@@ -158,7 +158,7 @@ int main(int argc, char* argv[]) {
         auto end = std::chrono::high_resolution_clock::now(); // Finalizar el cronómetro
         // Calcular la duración
         std::chrono::duration<double> duration = end - start;
-        std::cout << "Kruskal (heap): " << duration.count() << " segundos" << "s\n";
+        std::cout << "Kruskal (heap): " << duration.count() << " segundos" << "\n";
     
     }
 
