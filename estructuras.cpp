@@ -32,25 +32,3 @@ std::vector<Edge> generate_edges(std::vector<Node>& nodes) {
             edges.push_back({&nodes[i], &nodes[j], edge_weight(nodes[i], nodes[j])});
     return edges;
 }
-
-void construir_con_sort(std::vector<Edge>& edges) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    std::sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b) {
-        return a.weight < b.weight;
-    });
-
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duracion = end - start;
-    std::cout << "Tiempo sort: " << duracion.count() << " segundos\n";
-}
-
-void construir_con_heap(std::vector<Edge>& edges) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    std::priority_queue<Edge> heap(edges.begin(), edges.end());
-
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duracion = end - start;
-    std::cout << "Tiempo heap: " << duracion.count() << " segundos\n";
-}
